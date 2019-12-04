@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  验证用户信息：<input type="text" name="" id="username">
+   <script>
+    var btn = document.getElementById("btn");
+    btn.addEventListener("keyup", fun)
+    function fun(){
+      console.log(btn.value)
+    }
+
+  </script>
+
+  <script>
+    var username = document.getElementById("username");
+    function debounce(action, delay){
+      let timer = null // 定时器变量
+      return function(){
+        let self = this
+        args = arguments
+        clearTimeout(timer) // 触发时先清理上一次的定时器，然后重新计时
+        timer = setTimeout(function(){
+          action.apply(self, args)
+        }, delay) // 设置定时器
+      }
+    }
+    // 事件处理函数
+    function fun(){
+      console.log(username.value)
+    }
+    username.addEventListener("keyup", debounce(fun, 500))
+  </script>
+  <script>
+    
+    function throttle(func, interval){
+      let timer = null
+      let startTime = new Date()
+      return function(){
+        clearTimeout(timer)
+        let curTime = new Date()
+        if(curTime - startTime <= interval){
+          //小于规定事件间隔，用setTimeout在指定时间后再执行
+          timeout = setTimeout(() => {
+            func()
+          }, interval)
+        }else {
+          //重新计时并执行函数
+          startTime = curTime
+          func()
+        }
+      }
+    }
+
+    //事件处理函数
+    function realFunc(){
+      console.log("success")
+    }
+    window.addEventListener('scroll', throttle(realFunc, 100))
+  </script>
+</body>
+</html>
