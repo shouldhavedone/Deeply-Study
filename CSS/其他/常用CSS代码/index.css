@@ -1,0 +1,12 @@
+div {
+  height: 200px;
+  width: 800px;
+  border: 1px solid #000;
+}
+
+.vc {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
